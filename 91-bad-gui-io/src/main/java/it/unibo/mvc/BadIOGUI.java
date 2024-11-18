@@ -11,7 +11,11 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.nio.charset.StandardCharsets;
@@ -76,7 +80,12 @@ public class BadIOGUI {
         read.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(final ActionEvent e){
-                System.out.println("ciao");
+                try (final BufferedReader r = new BufferedReader(new FileReader(PATH))){
+                    System.out.println(r.readLine());
+                } catch (IOException e1) {
+                    JOptionPane.showMessageDialog(frame, e1, "Error", JOptionPane.ERROR_MESSAGE);
+                    e1.printStackTrace(); // NOPMD: allowed as this is just an exercise
+                }
             }
         });
     }
