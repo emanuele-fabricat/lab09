@@ -1,6 +1,6 @@
 package it.unibo.mvc;
 
-import javax.swing.Box;
+//import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -11,16 +11,19 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
+//import java.io.BufferedReader;
+//import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
+//import java.io.FileReader;
+//import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
-import java.util.List;
+//import java.nio.file.Path;
+import java.nio.file.Paths;
+//import java.util.LinkedList;
+//import java.util.List;
 import java.util.Random;
 
 /**
@@ -45,7 +48,7 @@ public class BadIOGUI {
      */
     public BadIOGUI() {
         final JPanel canvas = new JPanel();
-        final JPanel innerCanvas =new JPanel();
+        final JPanel innerCanvas = new JPanel();
         canvas.setLayout(new BorderLayout());
         innerCanvas.setLayout(new BoxLayout(innerCanvas, BoxLayout.X_AXIS));
         final JButton write = new JButton("Write on file");
@@ -77,14 +80,16 @@ public class BadIOGUI {
             }
         });
 
-        read.addActionListener(new ActionListener(){
+        read.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(final ActionEvent e){
-                try (final BufferedReader r = new BufferedReader(new FileReader(PATH))){
-                    System.out.println(r.readLine());
+            public void actionPerformed(final ActionEvent e) {
+                try {
+                    for (final String string : Files.readAllLines(Paths.get(PATH))) {
+                        System.out.println(string); //NOPMD: allowed as this is just an exercise
+                    }
                 } catch (IOException e1) {
                     JOptionPane.showMessageDialog(frame, e1, "Error", JOptionPane.ERROR_MESSAGE);
-                    e1.printStackTrace(); // NOPMD: allowed as this is just an exercise
+                    e1.printStackTrace(); //NOPMD: allowed as this is just an exercise
                 }
             }
         });
