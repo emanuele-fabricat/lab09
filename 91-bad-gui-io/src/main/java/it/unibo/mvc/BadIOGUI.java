@@ -1,5 +1,6 @@
 package it.unibo.mvc;
 
+import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -40,9 +41,12 @@ public class BadIOGUI {
      */
     public BadIOGUI() {
         final JPanel canvas = new JPanel();
+        final JPanel innerCanvas =new JPanel();
         canvas.setLayout(new BorderLayout());
+        innerCanvas.setLayout(new BoxLayout(innerCanvas, BoxLayout.X_AXIS));
         final JButton write = new JButton("Write on file");
-        canvas.add(write, BorderLayout.CENTER);
+        innerCanvas.add(write);
+        canvas.add(innerCanvas, BorderLayout.CENTER);
         frame.setContentPane(canvas);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         /*
@@ -81,6 +85,7 @@ public class BadIOGUI {
         final int sw = (int) screen.getWidth();
         final int sh = (int) screen.getHeight();
         frame.setSize(sw / PROPORTION, sh / PROPORTION);
+        frame.pack();
         /*
          * Instead of appearing at (0,0), upper left corner of the screen, this
          * flag makes the OS window manager take care of the default positioning
