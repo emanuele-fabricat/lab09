@@ -43,6 +43,7 @@ public final class SimpleGUI {
         });
         this.frame.setContentPane(canva);
         this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.frame.setTitle("My first simply text editor");
     }
     /** 
      *Prepare the frame to be shown

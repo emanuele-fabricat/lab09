@@ -14,7 +14,7 @@ public class Controller {
     private static final String DEFOULT_FILE = "output.txt";
     private static final String PATH = System.getProperty("user.home") + File.separator;
 
-    private Controller() {
+    public Controller() {
         this.fileName = DEFOULT_FILE;
     }
     
