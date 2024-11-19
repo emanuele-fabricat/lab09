@@ -14,10 +14,12 @@ public class Controller {
     private static final String DEFOULT_FILE = "output.txt";
     private static final String PATH = System.getProperty("user.home") + File.separator;
 
+    /**
+     * The constructor of the class.
+     */
     public Controller() {
         this.fileName = DEFOULT_FILE;
     }
-    
     /**
      * 
      * @return The file name
@@ -25,21 +27,16 @@ public class Controller {
     public String getFileName() {
         return this.fileName;
     }
-    private void setFileName(String fileName) {
+    private void setFileName(final String fileName) {
         this.fileName = fileName;
     }
     /**
-     * @param  fileName New file, that must be in the home directory, and it must be passed by only name,
-     *if the file doesn't exist the metod return False
-     * @return True if the file exist, False instead
+     * Set a new file.
+     * 
+     * @param  fileName The new file selected
      */
-    public boolean setFile(String fileName) {
-        if(new File(PATH + fileName).exists()) {
-            setFileName(fileName);
-            return true;
-        }else{
-            return false;
-        }
+    public void setFile(final String fileName) {
+        setFileName(fileName);
     }
     /**
      * 
@@ -52,11 +49,11 @@ public class Controller {
      * 
      * @param text The string to write in the file
      */
-    public void write(String text) {
-        try (PrintStream ps = new PrintStream(this.getFilePAth(), StandardCharsets.UTF_8)){
+    public void write(final String text) {
+        try (PrintStream ps = new PrintStream(this.getFilePAth(), StandardCharsets.UTF_8)) {
             ps.print(text);
         } catch (IOException e1) {
-            System.out.println("The file is impossible to open or doesn't exist");// NOPMD: allowed as this is just an exercise
+            System.out.println("The file is impossible to open or doesn't exist"); // NOPMD: allowed as this is just an exercise
             e1.printStackTrace(); // NOPMD: allowed as this is just an exercise
         }
     }

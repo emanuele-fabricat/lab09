@@ -39,37 +39,42 @@ public final class SimpleGUIWithFileChooser {
          * Handler
          */
         broswe.addActionListener(new ActionListener() {
-
+            /**
+             * Set the Listener policy.
+             */
             @Override
-            public void actionPerformed(ActionEvent e) {
-                JFileChooser fileChooser = new JFileChooser();
-                if(fileChooser.showSaveDialog(frame) == JFileChooser.APPROVE_OPTION){
+            public void actionPerformed(final ActionEvent e) {
+                final JFileChooser fileChooser = new JFileChooser();
+                if (fileChooser.showSaveDialog(frame) == JFileChooser.APPROVE_OPTION) {
                     control.setFile(fileChooser.getSelectedFile().getName());
                     pathFile.setText(fileChooser.getSelectedFile().getAbsolutePath());
-                }else if(fileChooser.showSaveDialog(frame) == JFileChooser.CANCEL_OPTION){
-
-                }else{
+                } else if (fileChooser.showSaveDialog(frame) == JFileChooser.CANCEL_OPTION) {
+                    JOptionPane.showMessageDialog(frame, "No file has been choosen", "Choice", JOptionPane.INFORMATION_MESSAGE);
+                } else {
                     JOptionPane.showMessageDialog(frame, "Occured an error", "Error", JOptionPane.WARNING_MESSAGE);
                 }
             }
-            
         });
         /**
          * Handlers
          */
         save.addActionListener(new ActionListener() {
-
+            /**
+             * Set the Listener policy.
+             */
             @Override
             public void actionPerformed(final ActionEvent e) {
                 JOptionPane.showConfirmDialog(frame, "Are you sure to save?", "Saving", JOptionPane.YES_NO_OPTION);
-            }
-            
+            } 
         });
         this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.frame.setContentPane(canva);
         this.frame.setTitle("Second first frame");
     }
 
+    /**
+     * Prepare the frame to be showen.
+     */
     public void display() {
         final Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
         final int sw = (int) screen.getWidth();
@@ -78,7 +83,12 @@ public final class SimpleGUIWithFileChooser {
         frame.setVisible(true);
     }
 
-    public static void main(String[] args) {
+    /**
+     * Play the application.
+     * 
+     * @param args ignored
+     */
+    public static void main(final String[] args) {
         new SimpleGUIWithFileChooser().display();
     }
 
