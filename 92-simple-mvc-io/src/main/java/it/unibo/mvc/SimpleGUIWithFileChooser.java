@@ -22,17 +22,20 @@ public final class SimpleGUIWithFileChooser {
 
     private final JFrame frame = new JFrame();
     private final Controller control = new Controller();
-    private SimpleGUIWithFileChooser() {
+
+    private SimpleGUIWithFileChooser(final Controller controller) {
         final JPanel canva = new JPanel();
         final JPanel innerCanva = new JPanel();
         final JButton broswe = new JButton("Browse..");
         final JButton save = new JButton("Save");
         final JTextField pathFile = new JTextField(control.getFileName());
+        final JTextField text  = new JTextField();
         canva.setLayout(new BorderLayout());
         canva.add(save, BorderLayout.SOUTH);
         innerCanva.setLayout(new BorderLayout());
         pathFile.setEditable(false);
         canva.add(innerCanva, BorderLayout.NORTH);
+        canva.add(text, BorderLayout.CENTER);
         innerCanva.add(pathFile, BorderLayout.CENTER);
         innerCanva.add(broswe, BorderLayout.LINE_END);
         /**
@@ -64,7 +67,13 @@ public final class SimpleGUIWithFileChooser {
              */
             @Override
             public void actionPerformed(final ActionEvent e) {
-                JOptionPane.showConfirmDialog(frame, "Are you sure to save?", "Saving", JOptionPane.YES_NO_OPTION);
+                final int choice = JOptionPane.showConfirmDialog(frame, 
+                    "Are you sure to save?", 
+                    "Saving", 
+                    JOptionPane.YES_NO_OPTION);
+                if (choice == JOptionPane.YES_OPTION) {
+                    controller.write(text.getText());
+                }
             } 
         });
         this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -89,7 +98,7 @@ public final class SimpleGUIWithFileChooser {
      * @param args ignored
      */
     public static void main(final String[] args) {
-        new SimpleGUIWithFileChooser().display();
+        new SimpleGUIWithFileChooser(new Controller()).display();
     }
 
 

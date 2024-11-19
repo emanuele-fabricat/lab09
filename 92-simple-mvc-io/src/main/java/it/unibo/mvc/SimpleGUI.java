@@ -23,12 +23,15 @@ public final class SimpleGUI {
 
     /**
      * Create a frame with the required specifications.
+     * 
+     * @param controller The controller to save the text.
      */
-    public SimpleGUI() {
+    public SimpleGUI(final Controller controller) {
         final JPanel canva = new JPanel();
         final JButton save = new JButton("Save");
+        final TextArea text = new TextArea();
         canva.setLayout(new BorderLayout());
-        canva.add(new TextArea(), BorderLayout.CENTER);
+        canva.add(text, BorderLayout.CENTER);
         canva.add(save, BorderLayout.SOUTH);
         /**
          * Handlers
@@ -39,8 +42,14 @@ public final class SimpleGUI {
              */
             @Override
             public void actionPerformed(final ActionEvent e) {
-                JOptionPane.showConfirmDialog(frame, "Are you sure to save?", "Saving", JOptionPane.YES_NO_OPTION);
-            } 
+                final int choice = JOptionPane.showConfirmDialog(frame,
+                     "Are you sure to save?", 
+                     "Saving", 
+                     JOptionPane.YES_NO_OPTION);
+                if (choice == JOptionPane.YES_OPTION) {
+                    controller.write(text.getText());
+                }
+            }
         });
         this.frame.setContentPane(canva);
         this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -66,6 +75,6 @@ public final class SimpleGUI {
         /**
          * Starts the interface.
          */
-        new SimpleGUI().display();
+        new SimpleGUI(new Controller()).display();
     }
 }
