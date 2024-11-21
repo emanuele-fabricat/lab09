@@ -16,9 +16,9 @@ import java.awt.Toolkit;
  */
 public final class SimpleGUI {
     private final JFrame frame = new JFrame();
-    private static int PROPORTION = 5;
+    private static final int PROPORTION = 5;
 
-    private SimpleGUI(SimpleController controller) {
+    private SimpleGUI(final SimpleController controller) {
         final JPanel canva = new JPanel();
         final JPanel innerCanva = new JPanel();
         final JTextField latestString = new JTextField("Waiting first string");
@@ -44,15 +44,15 @@ public final class SimpleGUI {
         this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.frame.setTitle("Simple pinter to standard output");
     }
-    private static void stampChronology(SimpleController controller, JTextField text) {
+    private static void stampChronology(final SimpleController controller, final JTextField text) {
         text.setText(controller.getHistory().toString());
     }
-    private static void stamp(SimpleController controller, String text) {
+    private static void stamp(final SimpleController controller, final String text) {
         controller.setString(text);
         controller.stamp();
     }
     /**
-     * Prepare the frame to be shown
+     * Prepare the frame to be shown.
      */
     public void display() {
         final Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();

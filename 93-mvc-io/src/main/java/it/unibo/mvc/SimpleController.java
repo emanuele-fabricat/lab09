@@ -9,13 +9,13 @@ import java.util.Objects;
  *
  */
 public final class SimpleController implements Controller {
-    private List<String> chronology = new ArrayList<>();
+    private final List<String> chronology = new ArrayList<>();
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public void setString(String text) {
+    public void setString(final String text) {
         chronology.add(Objects.requireNonNull(text)); 
     }
     /**

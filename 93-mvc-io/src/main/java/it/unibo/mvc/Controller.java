@@ -10,22 +10,24 @@ public interface Controller {
      * A method for setting the next string to print. Null values are not
      * acceptable, and an exception should be produced.
      * 
-     * @param text The next string to print
+     * @param text The next string to print.
      */
-    public void setString(String text);
+    void setString(String text);
     /**
-     * A method for getting the next string to print
+     * A method for getting the next string to print.
      * 
-     * @return The last String to print
+     * @return The last String to print.
      */
-    public String getString();
+    String getString();
     /**
-     * A method for getting the history of the printed strings (in form of a {@link List#of(String)})
+     * A method for getting the history of the printed strings (in form of a {@link List#of(String)}).
+     * 
+     * @return All the string printed.
      */
-    public List<String> getHistory();
+    List<String> getHistory();
     /**
-     * A method that prints the current string. 
+     * A method that prints the current string.
      * If the current string is unset, an {@link IllegalStateException} should be thrown.
      */
-    public void stamp();    
+    void stamp();
 }
