@@ -21,30 +21,30 @@ public final class SimpleGUI {
     private SimpleGUI(final SimpleController controller) {
         final JPanel canva = new JPanel();
         final JPanel innerCanva = new JPanel();
-        final JTextField latestString = new JTextField("Waiting first string");
+        final JTextField newString = new JTextField("Waiting first string");
         final JTextArea text = new JTextArea();
         final JButton print = new JButton("Print");
         final JButton showHistory = new JButton("Show history");
 
         canva.setLayout(new BorderLayout());
         innerCanva.setLayout(new BoxLayout(innerCanva, BoxLayout.X_AXIS));
-        canva.add(latestString, BorderLayout.NORTH);
+        canva.add(newString, BorderLayout.NORTH);
         canva.add(text, BorderLayout.CENTER);
         canva.add(innerCanva, BorderLayout.SOUTH);
         innerCanva.add(showHistory, BorderLayout.SOUTH);
         innerCanva.add(print, BorderLayout.SOUTH);
-        latestString.setEditable(false);
+        text.setEditable(false);
         /**
          * handlers
          */
         print.addActionListener(e -> stamp(controller, text.getText()));
-        showHistory.addActionListener(e -> stampChronology(controller, latestString));
+        showHistory.addActionListener(e -> stampChronology(controller, text));
 
         this.frame.add(canva);
         this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.frame.setTitle("Simple pinter to standard output");
     }
-    private static void stampChronology(final SimpleController controller, final JTextField text) {
+    private static void stampChronology(final SimpleController controller, final JTextArea text) {
         text.setText(controller.getHistory().toString());
     }
     private static void stamp(final SimpleController controller, final String text) {
